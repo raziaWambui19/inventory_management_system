@@ -1,4 +1,4 @@
-from flask import Flask, jsonify, request, Blueprint
+from flask import  jsonify, request, Blueprint
 from models.inventory import (
     get_inventory as inventory_get_inventory,
     get_item_by_id as inventory_get_item_by_id,
@@ -28,7 +28,7 @@ def add_item():
     item = inventory_add_item(data)
     return jsonify(item), 201
 
-@inventory_bp.route('/inventory/<int:item_id>', methods=['PATCH', 'PUT'])
+@inventory_bp.route('/inventory/<int:item_id>', methods=['PATCH'])
 def update_item(item_id):
     data = request.get_json()
     item = inventory_update_item(item_id, data)
@@ -38,13 +38,14 @@ def update_item(item_id):
 
 @inventory_bp.route('/inventory/<int:item_id>', methods=['DELETE'])
 def delete_item(item_id):
-    if inventory_delete_item(item_id):
-        return jsonify({'message': 'Item deleted'}), 200
-    return jsonify({'error': 'Item not found'}), 404
+    deleted = inventory_delete_item(item_id)
+    if not deleted:
+        return jsonify({'error': 'Item not found'}), 404
+    return jsonify({'message': 'Item deleted'}), 200
 
-@inventory_bp.route('/product/<barcode>', methods=['GET'])
-def get_product(barcode):
-    item = fetch_product(barcode)
+@inventory_bp.route('/inventory/product/<item_id>', methods=['GET'])
+def get_product(item_id):
+    item = fetch_product(item_id)
     if item:
         return jsonify(item), 200
     return jsonify({'error': 'Product not found'}), 404

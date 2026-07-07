@@ -44,19 +44,24 @@ def main():
             )
         elif choice == '4':
             item_id = input("Enter item ID to update: ")
+            new_quantity = input("Enter new item quantity: ")
 
-            requests.put(
-                "http://127.0.0.1:5000/inventory/"+item_id,
+            response = requests.patch(
+                f"{base}/inventory/{item_id}",
                 json={
-                    "id": item_id
+                    
+                    "quantity": new_quantity
                 }
             )
+
+            print(f"Item {item_id} updated with new quantity: {new_quantity}")
+                
           
             
 
         elif choice == '5':
-            barcode = input("Enter product barcode: ")
-            print(requests.get(f"{base}/product/{barcode}").json())
+            item_id = input("Enter item ID to delete: ")
+            print(requests.delete(f"{base}/inventory/{item_id}").json())
 
         elif choice == '6':
             break

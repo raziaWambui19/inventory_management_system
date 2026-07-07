@@ -21,7 +21,7 @@ def test_get_inventory(client):
 
 def test_patch(client):
     response = client.patch('/inventory/1', json={
-        'name': 'Updated Item 1',
+        
         'quantity': 20
     })
     assert response.status_code == 200
