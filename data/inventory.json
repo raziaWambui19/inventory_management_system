@@ -1,6 +1,7 @@
 [
     {
-        "id": 2,
-        "quantity": "400ml"
+        "id": 1,
+        "name": "cow",
+        "quantity": "7"
     }
 ]

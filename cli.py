@@ -5,11 +5,10 @@ base = "http://127.0.0.1:5000"
 def main():
     while True:
         print("1. Get Inventory")
-        print("2. Get Item by ID")
-        print("3. Add Item")
-        print("4. Update Item")
-        print("5. Delete Item")
-        print("6. Exit")
+        print("2. Add Item")
+        print("3. Update Item")
+        print("4. Delete Item")
+        print("5. Exit")
 
         choice = input("Enter your choice: ")
 
@@ -22,8 +21,8 @@ def main():
             name = input("Enter item name: ")
             quantity = input("Enter item quantity: ")
 
-            requests.request.post(
-                base+"/inventory",
+            requests.request("POST",
+                "http://127.0.0.1:5000/inventory",
                 json={
                     "id": item_id,
                     "name": name,
@@ -32,17 +31,8 @@ def main():
             )
             
 
+        
         elif choice == '3':
-            item_id = input("Enter item ID: ")
-            quantity = input("Enter item quantity: ")
-            requests.post(
-                "http://127.0.0.1:5000/inventory",
-                json={
-                    "id": item_id,
-                    "quantity": quantity
-                }
-            )
-        elif choice == '4':
             item_id = input("Enter item ID to update: ")
             new_quantity = input("Enter new item quantity: ")
 
@@ -59,11 +49,12 @@ def main():
           
             
 
-        elif choice == '5':
+        elif choice == '4':
             item_id = input("Enter item ID to delete: ")
             print(requests.delete(f"{base}/inventory/{item_id}").json())
 
-        elif choice == '6':
+        elif choice == '5':
+        
             break
 
 if __name__ == "__main__":
