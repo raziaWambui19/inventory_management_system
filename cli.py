@@ -34,9 +34,9 @@ def main():
 
         elif choice == '3':
             item_id = input("Enter item ID: ")
-            Quantity = input("Enter item quantity: ")
-            requests.request.post(
-                base+"/inventory",
+            quantity = input("Enter item quantity: ")
+            requests.post(
+                "http://127.0.0.1:5000/inventory",
                 json={
                     "id": item_id,
                     "quantity": quantity
@@ -45,8 +45,11 @@ def main():
         elif choice == '4':
             item_id = input("Enter item ID to update: ")
 
-            requests.delete(
-                base+"/inventory/"+item_id,
+            requests.put(
+                "http://127.0.0.1:5000/inventory/"+item_id,
+                json={
+                    "id": item_id
+                }
             )
           
             
@@ -57,3 +60,6 @@ def main():
 
         elif choice == '6':
             break
+
+if __name__ == "__main__":
+    main()
