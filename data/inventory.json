@@ -2,6 +2,11 @@
     {
         "id": "1",
         "name": "cow",
-        "quantity": "7"
+        "quantity": "30"
+    },
+    {
+        "id": "2",
+        "name": "sheep",
+        "quantity": "5"
     }
 ]

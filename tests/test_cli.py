@@ -10,7 +10,7 @@ def test_cli_exits_cleanly(monkeypatch, capsys):
 
 
 def test_cli_fetches_a_product_by_barcode(monkeypatch):
-    answers = iter(["2", "3017620422003", "7"])
+    answers = iter(["5", "3017620422003", "7"])
     calls = []
     monkeypatch.setattr("builtins.input", lambda _: next(answers))
     monkeypatch.setattr("cli.make_request", lambda *args, **kwargs: calls.append(args))

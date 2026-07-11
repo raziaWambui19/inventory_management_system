@@ -8,19 +8,17 @@ FILE_NAME = Path(__file__).resolve().parents[1] / "data" / "inventory.json"
 
 
 def load_inventory():
-    """Return the inventory, creating an empty data file when needed."""
-    path = Path(FILE_NAME)
-    path.parent.mkdir(parents=True, exist_ok=True)
-    if not path.exists():
-        path.write_text("[]", encoding="utf-8")
+    with open(FILE_NAME, 'r') as f:
+        return json.load(f)
 
-    with path.open("r", encoding="utf-8") as file:
-        inventory = json.load(file)
-
-    if not isinstance(inventory, list):
-        raise ValueError("Inventory data must be a list")
-    return inventory
-
+def save_inventory(inventory):
+    if not os.path.exists("FILE_NAME"):
+        os.makedirs("data", exist_ok=True)
+        with open(FILE_NAME, 'w') as f:
+            json.dump([], f)
+    
+    with open(FILE_NAME, 'w') as f:
+        json.dump(inventory, f, indent=4)
 
 def save_inventory(inventory):
     path = Path(FILE_NAME)
@@ -36,18 +34,16 @@ def get_inventory():
 
 
 def get_item_by_id(item_id):
-    for item in load_inventory():
-        if str(item.get("id")) == str(item_id):
+    inventory = load_inventory()    
+    for item in inventory:
+        if item['id'] == item_id:
             return item
     return None
 
 
 def add_item(item):
-    inventory = load_inventory()
-    item = {**item, "id": str(item["id"])}
-    if any(str(existing.get("id")) == item["id"] for existing in inventory):
-        return None
-
+    item["id"] = int(item["id"])  # Ensure the ID is an integer
+    inventory = load_inventory()    
     inventory.append(item)
     save_inventory(inventory)
     return item
