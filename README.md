@@ -1,185 +1,76 @@
 # Inventory Management System
 
-## Project Overview
-
-The Inventory Management System is a Flask-based REST API that allows users to manage inventory items through Create, Read, Update, and Delete (CRUD) operations. The project also integrates with the OpenFoodFacts API to retrieve real-time product information using a barcode. A Command Line Interface (CLI) is included to interact with the API.
-
----
+A Flask REST API and command-line client for creating, viewing, updating, deleting, and importing inventory items.
 
 ## Features
 
-- Flask REST API
-- CRUD Operations
-  - Create inventory items
-  - View all inventory items
-  - View a single inventory item
-  - Update inventory items
-  - Delete inventory items
-- External API Integration using OpenFoodFacts
-- Command Line Interface (CLI)
-- Unit Testing with Pytest
-
----
-
-## Technologies Used
-
-- Python 
-- Flask
-- Requests
-- Pytest
-- Git & GitHub
-
----
-
-## Project Structure
-
-```
-inventory_management_system/
-│
-├── app.py
-├── cli.py
-├── README.md
-├── requirements.txt
-│
-├── data/
-├── models/
-│   └── inventory.py
-│
-├── routes/
-│   └── inventory_routes.py
-│
-├── services/
-│   └── openfoodfacts.py
-│
-└── tests/
-    └── test_api.py
-```
-
----
+- CRUD endpoints for inventory items
+- OpenFoodFacts barcode lookup and import
+- Command-line client
+- Isolated pytest test suite
 
 ## Installation
 
-### 1. Clone the repository
-
-```bash
-git clone https://github.com/raziaWambui19/inventory_management_system.git
-```
-
-### 2. Navigate to the project folder
-
-```bash
-cd inventory_management_system
-```
-
-### 3. Create a virtual environment
-
-Windows
-
 ```bash
 python -m venv venv
-```
-
-### 4. Activate the virtual environment
-
-Windows
-
-```bash
 venv\Scripts\activate
-```
-
-### 5. Install the required packages
-
-```bash
 pip install -r requirements.txt
 ```
 
----
-
-## Running the Application
-
-Start the Flask server by running:
+## Running the application
 
 ```bash
 python app.py
 ```
 
-The application will start on:
+The API runs at `http://127.0.0.1:5000`. In another terminal, run `python cli.py` to use the command-line client.
 
-```
-http://127.0.0.1:5000
-```
+The CLI can fetch a product by barcode without saving it, search products by name, or import a barcode result into inventory.
 
----
-
-## Running the CLI
-
-Open a new terminal while the Flask server is running.
-
-Activate the virtual environment if needed:
-
-```bash
-venv\Scripts\activate
-```
-
-Run:
-
-```bash
-python cli.py
-```
-
-Follow the on-screen menu to manage inventory items.
-
----
-
-## API Endpoints
+## API endpoints
 
 | Method | Endpoint | Description |
-|---------|----------|-------------|
-| GET | /inventory | Retrieve all inventory items |
-| GET | /inventory/<id> | Retrieve a single inventory item |
-| POST | /inventory | Create a new inventory item |
-| PATCH | /inventory/<id> | Update an inventory item |
-| DELETE | /inventory/<id> | Delete an inventory item |
-| GET | /product/<barcode> | Fetch product details from OpenFoodFacts |
+| --- | --- | --- |
+| GET | `/inventory` | Retrieve all inventory items |
+| GET | `/inventory/<id>` | Retrieve one inventory item |
+| POST | `/inventory` | Create an item; JSON requires `id`, `name`, and `quantity` |
+| PATCH | `/inventory/<id>` | Update an item's `name` and/or `quantity` |
+| DELETE | `/inventory/<id>` | Delete an item |
+| POST | `/inventory/import/<barcode>` | Import a barcode product into inventory |
+| GET | `/inventory/product/barcode/<barcode>` | Look up an OpenFoodFacts product without saving it |
+| GET | `/inventory/product/search?name=<name>` | Search OpenFoodFacts products by name |
 
----
+Example create request body:
 
-## Running the Tests
+```json
+{
+  "id": "1",
+  "name": "Item 1",
+  "quantity": 10
+}
+```
 
-To run all tests:
+## Tests
 
 ```bash
 python -m pytest
 ```
 
-To run only the API tests:
+Tests use temporary inventory files and mock the external product service, so they do not alter `data/inventory.json` or require network access.
 
-```bash
-python -m pytest tests/test_api.py -v
+Product searches depend on OpenFoodFacts availability. The API returns `503` with a clear error message when that service is temporarily unavailable.
+
+## Project structure
+
+```text
+inventory_management_system/
+├── app.py
+├── cli.py
+├── data/inventory.json
+├── models/inventory.py
+├── routes/inventory_routes.py
+├── services/openfoodfacts.py
+└── tests/
+    ├── test_api.py
+    └── test_cli.py
 ```
-
-If all tests pass, you should see output similar to:
-
-```
-==============================
-5 passed in X.XXs
-==============================
-```
-
----
-
-## External API
-
-This project uses the OpenFoodFacts API to retrieve product information using a barcode.
-
-Example endpoint:
-
-```
-GET /product/737628064502
-```
-
----
-
-## Author
-
-Developed as part of the **Python REST API with Flask – Inventory Management System** Summative Lab.
