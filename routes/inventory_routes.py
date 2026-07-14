@@ -30,7 +30,6 @@ def get_item(item_id):
 @inventory_bp.route("/inventory", methods=["POST"])
 def add_item():
     data = request.get_json()
-    # validate required fields
     if not data or not data.get("id") or not data.get("name") or not data.get("quantity"):
         return jsonify({"error": "Invalid request body"}), 400
 
@@ -45,7 +44,6 @@ def update_item(item_id):
     data = request.get_json()
     if not data:
         return jsonify({"error": "Invalid request body"}), 400
-    # Do not allow changing IDs via patch
     if "id" in data and str(data.get("id")) != str(item_id):
         return jsonify({"error": "Cannot change item id"}), 400
 
@@ -68,6 +66,14 @@ def get_product_by_barcode(barcode):
     if item:
         return jsonify(item), 200
     return jsonify({"error": "Product not found"}), 404
+
+
+@inventory_bp.route("/inventory/import/<barcode>", methods=["POST"])
+def import_product(barcode):
+    item = inventory_import_item(barcode)
+    if item is None:
+        return jsonify({"error": "Product could not be imported"}), 404
+    return jsonify(item), 201
 
 
 @inventory_bp.route("/inventory/product/search", methods=["GET"])

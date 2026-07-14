@@ -18,7 +18,8 @@ def client(tmp_path, monkeypatch):
 
 def create_item(client, item_id="1"):
     return client.post(
-        "/inventory", json={"id": item_id, "name": "Item 1", "quantity": 10}
+        "/inventory",
+        json={"id": item_id, "name": "Item 1", "quantity": 10},
     )
 
 
@@ -68,10 +69,21 @@ def test_external_api_is_mocked(client, monkeypatch):
     assert response.get_json() == product
 
 
+def test_import_route_adds_item_to_inventory(client, monkeypatch):
+    product = {"id": "3017620422003", "name": "Chocolate spread", "quantity": "400 g"}
+    monkeypatch.setattr(inventory, "fetch_product", lambda barcode: product)
+
+    response = client.post("/inventory/import/3017620422003")
+    assert response.status_code == 201
+    assert response.get_json()["id"] == "3017620422003"
+    assert client.get("/inventory/3017620422003").get_json()["name"] == "Chocolate spread"
+
+
 def test_search_products_by_name(client, monkeypatch):
     products = [{"id": "1", "name": "Chocolate spread", "quantity": "400 g"}]
     monkeypatch.setattr(
-        "routes.inventory_routes.search_products_by_name", lambda name: products
+        "routes.inventory_routes.search_products_by_name",
+        lambda name: products,
     )
 
     response = client.get("/inventory/product/search?name=chocolate")

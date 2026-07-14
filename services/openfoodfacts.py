@@ -30,7 +30,7 @@ def fetch_product(barcode):
 
 
 def search_products_by_name(name, page_size=10):
-    """Return up to ``page_size`` products that match a product name."""
+    """Return up to page_size products that match a product name."""
     try:
         response = requests.get(
             SEARCH_URL,
