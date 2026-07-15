@@ -8,5 +8,85 @@
         "id": "2",
         "name": "sheep",
         "quantity": "5"
+    },
+    {
+        "brand": "Andros",
+        "category": "Apple compotes, Light compotes",
+        "id": "3045320517101",
+        "ingredients": "pommes 95%, sucre, antioxydant : acide ascorbique.",
+        "name": "Compote de pomme all\u00e9g\u00e9e",
+        "quantity": "730 g"
+    },
+    {
+        "brand": "Materne",
+        "category": "Fresh foods, Apple compotes, Compotes to drink",
+        "id": "3021760403167",
+        "ingredients": "pomme 99,9 %, jus de citron concentr\u00e9 de citron, acide ascorbique,",
+        "name": "Pom'Potes Bio - Pomme Bio",
+        "quantity": "90g"
+    },
+    {
+        "brand": "Jardin Bio, L\u00e9a Nature",
+        "category": "Pur\u00e9es, Fruits puree without sugar added, Pear applesauces",
+        "id": "3478820008235",
+        "ingredients": "Pur\u00e9e de pommes * 70%, pur\u00e9e de poires* 30%, antioxydant: acide ascorbique. *Produits issus de l'agriculture biologique.",
+        "name": "Pur\u00e9e Pomme Poire Williams",
+        "quantity": "680 g"
+    },
+    {
+        "brand": "Pom' Potes",
+        "category": "Fresh foods, Compotes to drink, Pear applesauces",
+        "id": "3021769505626",
+        "ingredients": "Pomme 69,9% (pur\u00e9e et pur\u00e9e concentr\u00e9e), poire 30,0%, jus de citron concentr\u00e9 (si n\u00e9cessaire pour r\u00e9guler l' acidit\u00e9), antioxydant : acide ascorbique. Sans gluten.",
+        "name": "Pom'Potes (Pomme/Poire)",
+        "quantity": "90g"
+    },
+    {
+        "brand": "COCA-COLA",
+        "category": "Apple soft drinks, Sweetened beverages",
+        "id": "5449000036964",
+        "ingredients": "\u0627\u0644\u0633\u06a9\u0631\u0648\u0627\u0644\u0645\u062d\u0628\u0627\u0646\u0639\u0644\u064a \u064a\u062d\u062a\u0648\u064a \u0627\u0644\u062a\u0641\u0627\u062d, \u0628\u0646\u0643\u0647\u0629 \u0645\u0634\u0631\u0648\u0628 \u0645\u0627\u0644\u0648\u06464:6\u0646\u0643\u0647\u0629 ,5330\u060c \u0645\u062d\u0645\u0636 \u0639\u0635\u0628\u0631\u0627\u0644\u062a\u0641\u0627\u062e\u060c \u0633\u06a9\u0631\u060c \u063a\u0627\u0632\u064a\u060c \u0645\u0627\u0621 \u0627\u0645\u062a\u0648\u0646\u0627\u0646\u060c 5955\u0645\u062d\u0644\u0627\u062a:E950\u060c \u061b E202 \u062d\u0627\u0641\u0638\u0629:\u060cE211",
+        "name": "Poms",
+        "quantity": "1,5 l"
+    },
+    {
+        "brand": "Deliciously ella",
+        "category": "Apple cereal bars",
+        "id": "5060482840179",
+        "ingredients": "Gluten Free _Oats_ 44%, Rice Syrup, Coconut Oil, Raisins 8%, Coconut Sugar, Rapeseed Oil, Dried Apple Pieces 5%, Cinnamon (Cassia).",
+        "name": "Apple & raisin oat bars",
+        "quantity": "150g"
+    },
+    {
+        "brand": "Gerbl\u00e9",
+        "category": "Filled biscuits, Fruit-filled biscuits",
+        "id": "3175681270749",
+        "ingredients": "\u00c9dulcorant : maltitols, farine de bl\u00e9 30%, pur\u00e9e de pommes 28,2%, huile de colza, farine compl\u00e8te de bl\u00e9 10%, humectant: glyc\u00e9rol d'origine v\u00e9g\u00e9tale, pur\u00e9e de cassis 6%, amidon de bl\u00e9, fibres de bl\u00e9, jus concentr\u00e9 de citron, sel de mer, \u00e9mulsifiant : l\u00e9cithines de colza, ar\u00f4me naturel de cassis, poudres \u00e0 lever (acide citrique, carbonates de sodium).",
+        "name": "Gerbl\u00e9 - No Sugar Added Apple Blackcurrant Cake Filling, 180g (6.4oz)",
+        "quantity": "180 g"
+    },
+    {
+        "brand": "Andros",
+        "category": "Chestnut applesauces",
+        "id": "3608580006633",
+        "ingredients": "Pommes 58%, cr\u00e8me de marrons 42% (sucre, ch\u00e2taignes 38%, eau, extrait de vanille), acidifiant : acide citrique, antioxydant : acide ascorbique.",
+        "name": "Dessert fruitier Pomme Ch\u00e2taigne",
+        "quantity": "400 g \u212e (4 x100 g)"
+    },
+    {
+        "brand": "U",
+        "category": "Applesauces, Light compotes",
+        "id": "3256221976632",
+        "ingredients": "Puree de pommes 99.9%, antioxydant: acide ascorbique",
+        "name": "Pur\u00e9e de pomme sans sucres ajout\u00e9s bocal de 680g",
+        "quantity": "680 g"
+    },
+    {
+        "brand": "Charles & Alice",
+        "category": "Raspberry applesauces",
+        "id": "3297760097051",
+        "ingredients": "Pommes 85,2% (pur\u00e9e et pur\u00e9e concentr\u00e9e), pur\u00e9e de framboises 14,5%, jus concentr\u00e9 de carotte pourpre, antioxydant: acide ascorbique",
+        "name": "Pommes Framboises",
+        "quantity": "400 g (4 * 100 g)"
     }
 ]
