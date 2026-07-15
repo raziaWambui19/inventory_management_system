@@ -4,7 +4,7 @@ import requests
 BASE_URL = "https://world.openfoodfacts.net/api/v0/product/"
 SEARCH_URL = "https://world.openfoodfacts.net/cgi/search.pl"
 REQUEST_TIMEOUT_SECONDS = 10
-PRODUCT_FIELDS = "code,product_name,quantity"
+PRODUCT_FIELDS = "code,product_name,quantity,brands,categories,ingredients_text"
 HEADERS = {
     "User-Agent": "inventory-management-system/1.0 (local development)",
 }
@@ -53,6 +53,13 @@ def search_products_by_name(name, page_size=10):
     return [product for raw_product in products if (product := _format_product(raw_product))]
 
 
+def get_product_details(search_value, by_barcode=True):
+    """Query OpenFoodFacts by barcode or product name and return rich product details."""
+    if by_barcode:
+        return fetch_product(search_value)
+    return search_products_by_name(search_value)
+
+
 def _format_product(product):
     code = product.get("code")
     if not code:
@@ -61,4 +68,7 @@ def _format_product(product):
         "id": str(code),
         "name": product.get("product_name") or "Unknown product",
         "quantity": product.get("quantity") or "Unknown",
+        "brand": product.get("brands") or "Unknown",
+        "category": product.get("categories") or "Unknown",
+        "ingredients": product.get("ingredients_text") or "Unknown",
     }

@@ -60,11 +60,16 @@ def delete_item(item_id):
     return jsonify({"message": "Item deleted"}), 200
 
 
+<<<<<<< HEAD
 @inventory_bp.route("/inventory/product/barcode/<barcode>", methods=["GET"])
+=======
+@inventory_bp.route('/inventory/product/barcode/<barcode>', methods=['GET'])
+>>>>>>> 08f3df8 (last commit)
 def get_product_by_barcode(barcode):
     item = fetch_product(barcode)
     if item:
         return jsonify(item), 200
+<<<<<<< HEAD
     return jsonify({"error": "Product not found"}), 404
 
 
@@ -86,3 +91,18 @@ def search_products():
     if results is None:
         return jsonify({"error": "External service unavailable"}), 503
     return jsonify(results), 200
+=======
+    return jsonify({'error': 'Product not found'}), 404
+
+
+@inventory_bp.route('/inventory/product/search', methods=['GET'])
+def search_products():
+    name = request.args.get('name')
+    if not name:
+        return jsonify({'error': 'name query parameter required'}), 400
+
+    results = search_products_by_name(name)
+    if results is None:
+        return jsonify({'error': 'External service unavailable'}), 503
+    return jsonify(results), 200
+>>>>>>> 08f3df8 (last commit)
