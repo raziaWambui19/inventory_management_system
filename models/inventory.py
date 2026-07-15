@@ -41,16 +41,12 @@ def get_item_by_id(item_id: str) -> Optional[dict]:
 
 
 def add_item(item: dict) -> Optional[dict]:
-    # validate required fields
     if not item or not item.get("id") or not item.get("name") or not item.get("quantity"):
         return None
 
-    # ensure id stored as string
     item = {**item, "id": str(item.get("id"))}
-
     inventory = load_inventory()
 
-    # reject duplicate ids
     for existing in inventory:
         if str(existing.get("id")) == str(item.get("id")):
             return None
@@ -65,7 +61,6 @@ def update_item(item_id: str, new_data: dict) -> Optional[dict]:
     for item in inventory:
         if str(item.get("id")) == str(item_id):
             item.update(new_data)
-            # ensure id remains a string
             item["id"] = str(item.get("id"))
             save_inventory(inventory)
             return item
